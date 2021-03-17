@@ -8,3 +8,7 @@
 ## Start migrations
 
     bundle exec sequel -m db/migrations postgres://user:password@localhost/db_name
+
+## Start the server
+
+    ruby app.rb
