@@ -1,0 +1,6 @@
+db:
+  adapter: postgresql
+  host: localhost
+  user: ads_user
+pagination:
+  page_size: 10

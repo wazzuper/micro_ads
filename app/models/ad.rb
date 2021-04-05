@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
-Sequel.connect(
-  adapter: :postgres, database: 'icro_ads_db', host: 'localhost', user: 'micro_ads_user'
-)
-
 class Ad < Sequel::Model
-  FIELDS = %i[title description city].freeze
-
-  plugin :timestamps, update_on_create: true
-  plugin :validation_helpers
-
   def validate
     super
-    validates_presence(FIELDS)
+    validates_presence :title, message: I18n.t(:blank, scope: 'model.errors.ad.title')
+    validates_presence :description, message: I18n.t(:blank, scope: 'model.errors.ad.description')
+    validates_presence :city, message: I18n.t(:blank, scope: 'model.errors.ad.city')
   end
 end

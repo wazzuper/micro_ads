@@ -1,3 +1,5 @@
-require './app'
+require_relative 'config/environment'
 
-run App
+map '/ads' do
+  run AdRoutes
+end
