@@ -2,9 +2,21 @@
 
 ## Create local db:
 
-    psql -U username -d postgres
-    create database db_name
+    createdb -U username -h localhost db_name_development
+    createdb -U username -h localhost db_name_test
 
 ## Start migrations
 
-    bundle exec sequel -m db/migrations postgres://user:password@localhost/db_name
+    bin/rake db:migrate
+
+## Start the server
+
+    bin/puma
+
+## Open the console
+
+    bin/console
+
+## Start specs
+
+    bin/rspec

@@ -1,0 +1,6 @@
+en:
+  api:
+    errors:
+      not_found: 'Requested source is not found'
+      not_unique: 'This ad is already exists'
+      missing_parameters: 'Missing parameters'

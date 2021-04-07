@@ -1,0 +1,10 @@
+ru:
+  model:
+    errors:
+      ad:
+        title:
+          blank: 'Add title'
+        description:
+          blank: 'Add description'
+        city:
+          blank: 'Add city'
