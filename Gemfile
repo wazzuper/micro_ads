@@ -6,6 +6,8 @@ gem 'activesupport', '~> 6.1.3', require: false
 gem 'config', '~> 3.0.0'
 gem 'dry-initializer', '~> 3.0.4'
 gem 'dry-validation', '~> 1.6.0'
+gem 'faraday', '~> 1.3.0'
+gem 'faraday_middleware', '~> 1.0.0'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'i18n', '~> 1.8.9'
 gem 'pg', '~> 1.2.3'
