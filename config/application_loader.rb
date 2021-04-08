@@ -21,10 +21,12 @@ module ApplicationLoader
   end
 
   def require_app
+    require_file 'app/helpers/auth'
     require_dir 'app/helpers'
     require_file 'config/application'
     require_file 'app/services/base_service'
     require_dir 'app'
+    require_dir 'lib'
   end
 
   def init_app
