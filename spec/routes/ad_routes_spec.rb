@@ -2,6 +2,13 @@
 
 RSpec.describe AdRoutes, type: :routes do
   let(:user_id) {123 }
+  let(:city) { 'Moscow' }
+  let(:body) do
+    {
+      lat: 43.123123,
+      lon: 12.312343,
+    }
+  end
 
   describe 'GET /v1' do
     before { create_list(:ad, 3, user_id: user_id) }
@@ -16,14 +23,18 @@ RSpec.describe AdRoutes, type: :routes do
 
   describe 'POST /v1' do
     before do
-      allow(Auth::Client).to receive(:new).and_return(client)
-      allow(client).to receive(:auth).with(auth_token).and_return(user_id)
+      allow(Auth::Client).to receive(:new).and_return(auth_client)
+      allow(auth_client).to receive(:auth).with(auth_token).and_return(user_id)
 
       header 'Authorization', "Bearer #{auth_token}"
+
+      allow(Geocoder::Client).to receive(:new).and_return(geocoder_client)
+      allow(geocoder_client).to receive(:geocode).with(city).and_return(body)
     end
 
     let(:auth_token) { 'auth_token' }
-    let(:client) { instance_double('Auth lib') }
+    let(:auth_client) { instance_double('Auth lib') }
+    let(:geocoder_client) { instance_double('Geocoder lib') }
 
     context 'missing parameters' do
       it 'returns an error' do
@@ -39,7 +50,7 @@ RSpec.describe AdRoutes, type: :routes do
         {
           title: 'Ad title',
           description: 'Ad description',
-          city: 'City'
+          city: city,
         }
       end
 
@@ -80,7 +91,7 @@ RSpec.describe AdRoutes, type: :routes do
         {
           title: 'Ad title',
           description: 'Ad description',
-          city: 'City'
+          city: city,
         }
       end
       let(:last_ad) { Ad.last }
