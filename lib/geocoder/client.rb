@@ -3,12 +3,12 @@
 require 'dry/initializer'
 require_relative 'api'
 
-module Auth
+module Geocoder
   class Client
     extend Dry::Initializer[undifined: false]
     include Api
 
-    option :url, default: -> { 'http://localhost:2222/v1' }
+    option :url, default: -> { 'http://localhost:3333' }
     option :connection, default: -> { build_connection }
 
     private
