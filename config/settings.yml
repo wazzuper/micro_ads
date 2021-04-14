@@ -4,3 +4,5 @@ db:
   user: ads_user
 pagination:
   page_size: 10
+rabbitmq:
+  consumer_pool: 10

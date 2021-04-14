@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'activesupport', '~> 6.1.3', require: false
+gem 'bunny', '~> 2.17.0'
 gem 'config', '~> 3.0.0'
 gem 'dry-initializer', '~> 3.0.4'
 gem 'dry-validation', '~> 1.6.0'
