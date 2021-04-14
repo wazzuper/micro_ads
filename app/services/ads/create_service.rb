@@ -11,6 +11,7 @@ module Ads
     end
 
     option :user_id
+    option :geocoder, default: -> { Geocoder::Client.new }
 
     attr_reader :ad
 
@@ -20,6 +21,7 @@ module Ads
       return fail!(@ad.errors) unless @ad.valid?
 
       @ad.save
+      client.geocode_later(@ad)
     end
 
     private
@@ -27,14 +29,14 @@ module Ads
     def new_values
       values = ad.to_h.merge(user_id: user_id)
 
-      return values if values["city"].blank?
+      # return values if values["city"].blank?
 
-      coordinates = client.geocode(values["city"])
-      coordinates.present? ? values.merge(coordinates) : values
+      # coordinates = client.geocode(values["city"])
+      # coordinates.present? ? values.merge(coordinates) : values
     end
 
-    def client
-      @client ||= Geocoder::Client.new
-    end
+    # def client
+    #   @client ||= Geocoder::Client.new
+    # end
   end
 end
