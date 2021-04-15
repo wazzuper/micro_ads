@@ -5,7 +5,7 @@ RSpec.describe Ads::CreateService do
 
   context 'valid parameters' do
     before do
-      allow(Geocoder::Client).to receive(:new).and_return(client)
+      allow(Geocoder::Http::Client).to receive(:new).and_return(client)
       allow(client).to receive(:geocode).with(city).and_return(body)
     end
 

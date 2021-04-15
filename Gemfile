@@ -17,6 +17,7 @@ gem 'rake', '~> 13.0.3'
 gem 'sinatra', '~> 2.1.0', require: 'sinatra/base'
 gem 'sinatra-contrib', '~> 2.1.0'
 gem 'sequel', '~> 5.42.0'
+gem 'pry'
 
 group :test do
   gem 'database_cleaner-sequel', '2.0.0'

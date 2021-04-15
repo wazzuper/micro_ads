@@ -6,17 +6,26 @@ module Auth
   AUTH_TOKEN = %r{\ABearer (?<token>.+)\z}
 
   def user_id
-    user_id = client.auth(matched_token)
+    result =
+      if Settings.auth_client.rpc
+        rpc_client.fetch_user_id(matched_token)
+      else
+        http_client.auth(matched_token)
+      end
 
-    raise Unauthorized unless user_id
+    raise Unauthorized unless result
 
-    user_id
+    Settings.auth_client.rpc ? JSON(result)['user_id'] : result
   end
 
   private
 
-  def client
-    @client ||= Auth::Client.new
+  def http_client
+    @client ||= Auth::Http::Client.new
+  end
+
+  def rpc_client
+    @client ||= Auth::Rpc::Client.fetch
   end
 
   def matched_token
