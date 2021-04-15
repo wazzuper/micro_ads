@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return if !Settings.geocoder_client.rpc
+
 channel = RabbitMq.consumer_channel
 exchange = channel.default_exchange
 queue = channel.queue('ads', durable: true)

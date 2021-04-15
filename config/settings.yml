@@ -6,3 +6,7 @@ pagination:
   page_size: 10
 rabbitmq:
   consumer_pool: 10
+auth_client:
+  rpc: false
+geocoder_client:
+  rpc: false

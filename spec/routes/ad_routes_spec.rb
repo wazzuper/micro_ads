@@ -23,12 +23,12 @@ RSpec.describe AdRoutes, type: :routes do
 
   describe 'POST /v1' do
     before do
-      allow(Auth::Client).to receive(:new).and_return(auth_client)
+      allow(Auth::Http::Client).to receive(:new).and_return(auth_client)
       allow(auth_client).to receive(:auth).with(auth_token).and_return(user_id)
 
       header 'Authorization', "Bearer #{auth_token}"
 
-      allow(Geocoder::Client).to receive(:new).and_return(geocoder_client)
+      allow(Geocoder::Http::Client).to receive(:new).and_return(geocoder_client)
       allow(geocoder_client).to receive(:geocode).with(city).and_return(body)
     end
 

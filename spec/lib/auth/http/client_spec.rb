@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Auth::Client, type: :client do
+RSpec.describe Auth::Http::Client, type: :client do
   subject { described_class.new(connection: connection) }
 
   before { stubs.post('auth') { [status, headers, body.to_json] } }
